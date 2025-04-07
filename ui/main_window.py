@@ -14,8 +14,8 @@ import os
 
 from .player_controls import PlayerControls
 from .visualizations import SpectrogramCanvas, FrequencySpectrumCanvas, WaveformCanvas
-from ..core.file_handler import extract_audio_data
-from ..core.signal_generator import generate_test_signal
+from core.file_handler import extract_audio_data
+from core.signal_generator import generate_test_signal
 from .dialogs import GenerateSignalDialog
 
 

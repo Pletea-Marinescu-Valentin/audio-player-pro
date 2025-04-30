@@ -5,6 +5,7 @@ Provides simple audio effects like bass boost, reverb, echo, and speed control.
 
 import numpy as np
 from scipy import signal
+from numba import jit
 from ..core.audio_processor import normalize_audio
 
 
@@ -231,6 +232,7 @@ def apply_speed_up(audio_data, sample_rate, speed_factor=1.2, preserve_pitch=Tru
     return np.clip(modified_audio, -32768, 32767).astype(output_type)
 
 
+@jit(nopython=True)
 def apply_tremolo(audio_data, sample_rate, depth=0.5, rate=5.0, output_type=np.int16):
     """
     Apply tremolo effect to audio data.

@@ -11,6 +11,10 @@ import scipy.io.wavfile as wav
 import librosa
 from mutagen.mp3 import MP3
 from mutagen.wave import WAVE
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def get_audio_info(file_path):
@@ -87,6 +91,7 @@ def get_audio_info(file_path):
         else:
             info['error'] = f"Unsupported file format: {ext}"
     except Exception as e:
+        logging.error(f"General error: {str(e)}")
         info['error'] = f"General error: {str(e)}"
     
     return info
@@ -170,7 +175,7 @@ def extract_audio_data(file_path, keep_stereo=False):
             return None, None
             
     except Exception as e:
-        print(f"General error processing file: {str(e)}")
+        logging.error(f"General error processing file: {str(e)}")
         traceback.print_exc()
         return None, None
 
@@ -203,7 +208,7 @@ def save_audio_file(samples, sample_rate, file_path):
         wav.write(file_path, sample_rate, samples)
         return True
     except Exception as e:
-        print(f"Error saving audio file: {e}")
+        logging.error(f"Error saving audio file: {e}")
         traceback.print_exc()
         return False
 
@@ -280,7 +285,8 @@ def compare_stereo_channels(file_path):
                 result['info_error'] = str(e)
     
     except Exception as e:
-        result['error'] = str(e)
+        logging.error(f"Error comparing stereo channels: {str(e)}")
         traceback.print_exc()
+        result['error'] = str(e)
     
     return result

@@ -15,7 +15,7 @@ import os
 from .player_controls import PlayerControls
 from .visualizations import SpectrogramCanvas, FrequencySpectrumCanvas, WaveformCanvas
 from core.file_handler import extract_audio_data
-from core.signal_generator import generate_test_signal
+#from core.signal_generator import generate_test_signal
 from .dialogs import GenerateSignalDialog
 
 
@@ -105,6 +105,7 @@ class MainWindow(QMainWindow):
         )
         spectrogram_info.setWordWrap(True)
         spectrogram_layout.addWidget(spectrogram_info)
+        spectrogram_info.setToolTip("Shows the distribution of frequencies over time")
         
         spectrogram_widget.setLayout(spectrogram_layout)
         splitter.addWidget(spectrogram_widget)
@@ -124,6 +125,7 @@ class MainWindow(QMainWindow):
         )
         spectrum_info.setWordWrap(True)
         spectrum_layout.addWidget(spectrum_info)
+        spectrum_info.setToolTip("Displays the amplitude of the signal at different frequencies")
         
         spectrum_widget.setLayout(spectrum_layout)
         splitter.addWidget(spectrum_widget)
@@ -131,6 +133,7 @@ class MainWindow(QMainWindow):
         # Add update button
         update_button = QPushButton("🔄 Update Visualizations")
         update_button.clicked.connect(self.update_visualizations)
+        update_button.setToolTip("Refresh the visualizations with the latest audio data")
         
         # Add to main layout
         layout.addWidget(splitter)

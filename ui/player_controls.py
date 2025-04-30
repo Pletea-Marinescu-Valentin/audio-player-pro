@@ -188,7 +188,21 @@ class PlayerControls(QWidget):
         self.media_player.stateChanged.connect(self.update_player_state)
         
         self.setLayout(main_layout)
-    
+        
+        # Set tooltips for better usability
+        load_button.setToolTip("Load an audio file into the playlist")
+        remove_button.setToolTip("Remove the selected audio file from the playlist")
+        info_button.setToolTip("View detailed information about the selected audio file")
+        compare_button.setToolTip("Compare the stereo channels of the selected audio file")
+        self.play_button.setToolTip("Play or pause the current audio file")
+        stop_button.setToolTip("Stop playback and reset to the beginning")
+        self.shuffle_button.setToolTip("Toggle shuffle mode for the playlist")
+        self.repeat_button.setToolTip("Toggle repeat mode for the playlist")
+        self.volume_slider.setToolTip("Adjust the playback volume")
+        self.speed_slider.setToolTip("Adjust the playback speed")
+        self.effects_combo.setToolTip("Select an audio effect to apply")
+        apply_effect_button.setToolTip("Apply the selected audio effect to the current file")
+
     def open_audio_file(self):
         """
         Open a dialog to select an audio file and add it to the playlist.
